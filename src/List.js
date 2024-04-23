@@ -1,4 +1,5 @@
 import React from "react";
+import {RiDeleteBack2Fill} from "react-icons/ri";
 
 const List = (props) => {
 
@@ -6,20 +7,23 @@ const List = (props) => {
   return <ul className="user-list">
     {props.data.map((person) =>(
       <li key={person.id}>
-        <Person {...person} />
+        <Person {...person} removeItem={props.removeItem} />
       </li>
     ))}
   </ul>;
 };
 
-const Person = ({id, stato, nome, img}) => {
+
+const Person = ({id, stato, nome, img, removeItem}) => {
+
+
   return <article>
     <img src={img} alt='prs' className="person-img"/>
     <div className="person-info">
 
     <div className="person-action">
         <h4>{nome}</h4>
-        <button className="btn btn-danger">delete</button>
+        <button className="btn btn-danger" onClick={() => removeItem(id)} > <RiDeleteBack2Fill className="icon" /> </button>
     </div>
     <p>{stato}</p>
     </div>
